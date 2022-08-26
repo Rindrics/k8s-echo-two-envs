@@ -3,3 +3,5 @@ bases:
   - ../../base/
 patches:
 - deployment.yaml
+- service.yaml
+- ingress.yaml
