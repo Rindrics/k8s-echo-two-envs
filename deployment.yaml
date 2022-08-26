@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: echo-env
+  name: echo-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: echo-env
+  template:
+    metadata:
+      labels:
+        app: echo-env
+    spec:
+      containers:
+      - name: echo-env
+        image: hashicorp/http-echo
+        env:
+        - name: ENV
+          value: foobar
+        args:
+          - -text
+          - $(ENV)
+        ports:
+          - containerPort: 5678
