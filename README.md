@@ -19,12 +19,12 @@
 ### `production`
 
 1. `current-context` が `production` クラスタを向いていることを確認
-2. リポジトリルートにて `make prd` を実行
+2. リポジトリルートにて `make deploy-prd` を実行
 
 ### `development`
 
 1. `current-context` が `development` クラスタを向いていることを確認
-2. リポジトリルートにて `make dev` を実行
+2. リポジトリルートにて `make deploy-dev` を実行
 
 
 ## 環境構築
