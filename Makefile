@@ -2,7 +2,7 @@
 deploy-prd: overlays/production
 overlays/production: overlays/%: FORCE
 	@if [[ $$(kubectl config current-context | grep "$*") ]]; then \
-	    kustomize build overlays/$* | kubectl apply -f -; \
+	    kustomize build manifest/overlays/$* | kubectl apply -f -; \
 	else \
 	    echo "Oops! Need to switch context for $*"; \
 	fi
@@ -11,7 +11,7 @@ overlays/production: overlays/%: FORCE
 deploy-dev: overlays/development
 overlays/development: overlays/%: FORCE
 	@if [[ $$(kubectl config current-context | grep "$*") ]]; then \
-	    kustomize build overlays/$* | kubectl apply -f -; \
+	    kustomize build manifest/overlays/$* | kubectl apply -f -; \
 	else \
 	    echo "Oops! Need to switch context for $*"; \
 	fi
