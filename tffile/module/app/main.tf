@@ -7,11 +7,6 @@ terraform {
   }
 }
 
-provider "kustomization" {
-  kubeconfig_path = "~/.kube/config"
-  context         = var.context
-}
-
 data "kustomization" "environment" {
   provider = kustomization
   path     = "${path.module}/../../../manifest/overlays/${var.environment}"
