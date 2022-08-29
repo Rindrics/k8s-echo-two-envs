@@ -13,7 +13,6 @@ provider "kustomization" {
 
 module "development" {
   source          = "../../../module/app/"
-  context         = var.context
   kubeconfig_path = var.kubeconfig_path
   environment     = "development"
 }
