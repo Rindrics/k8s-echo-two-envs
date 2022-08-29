@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+# Run command on each environment
+#
+# Usage:
+#
+#   ./each "{ command }"
+#
+# Example:
+#
+#   ./each "pwd; echo 'Hello'"
+#
+ROOT="$(cd $(dirname $0); pwd)"
+
+set -e
+
+environments="${ROOT}/../tffile/environment"
+for env in $(ls -1v ${environments}/app); do
+  cd ${environments}/app/${env}
+  echo "********************************************************"
+  echo
+  echo "[${env}] $@"
+  echo
+  echo "********************************************************"
+  eval $@
+done

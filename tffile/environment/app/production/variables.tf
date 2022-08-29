@@ -1,5 +1,5 @@
-variable "context" {
+variable "kubeconfig_path" {
   type        = string
-  description = "Name of kubectl context"
-  default     = "kind-production"
+  description = "Path to kuberetes config file"
+  default     = "~/.kube/config"
 }

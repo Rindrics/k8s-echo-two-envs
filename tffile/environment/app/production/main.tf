@@ -8,11 +8,11 @@ terraform {
 }
 
 provider "kustomization" {
-  kubeconfig_path = "~/.kube/config"
+  kubeconfig_path = var.kubeconfig_path
 }
 
 module "production" {
-  source      = "../../../module/app/"
-  context     = var.context
-  environment = "production"
+  source          = "../../../module/app/"
+  kubeconfig_path = var.kubeconfig_path
+  environment     = "production"
 }
