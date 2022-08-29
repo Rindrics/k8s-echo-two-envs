@@ -8,6 +8,13 @@ terraform {
 }
 
 resource "kind_cluster" "new" {
-  name   = "production"
-  config = file("${path.module}/cluster_config.tftpl")
+  name = var.environment
+  config = templatefile(
+    "${path.module}/cluster_config.tftpl",
+    {
+      cluster_name           = "kind-${var.environment}",
+      host_ingress_port_http = var.host_ingress_port_http,
+      host_ingress_port_ssh  = var.host_ingress_port_ssh
+    }
+  )
 }
