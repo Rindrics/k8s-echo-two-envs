@@ -48,3 +48,32 @@ jobs:
 
       - name: Validation check
         run: ./tools/each terraform validate
+
+  plan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v3
+        with:
+          path: ~/.local/share/aquaproj-aqua
+          key: aqua-cache-${{ hashFiles('aqua.yml') }}
+
+      - uses: aquaproj/aqua-installer@v1.0.0
+        with:
+          aqua_version: v1.1.0
+
+      - name: Init
+        run: ./tools/each terraform init
+
+      - uses: helm/kind-action@v1.3.0
+        name: Create k8s Kind Cluster
+
+      - name: Plan check
+        run: |
+          ./tools/each 'tfcmt -var "target:$(basename $(pwd))" plan -- terraform plan -var kubeconfig_path=${KUBECONFIG}'
+        env:
+          PR_NUMBER: ${{ github.event.number }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          KUBECONFIG: /home/runner/.kube/config
