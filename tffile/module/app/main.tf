@@ -14,7 +14,7 @@ provider "kustomization" {
 
 data "kustomization" "environment" {
   provider = kustomization
-  path     = "${path.module}/../../manifest/overlays/${var.environment}"
+  path     = "${path.module}/../../../manifest/overlays/${var.environment}"
 }
 
 resource "kustomization_resource" "environment" {
