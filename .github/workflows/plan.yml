@@ -72,7 +72,7 @@ jobs:
 
       - name: Plan check
         run: |
-          ./tools/each 'tfcmt -var "target:$(basename $(pwd))" plan -- terraform plan -var kubeconfig_path=${KUBECONFIG}'
+          ./tools/each 'tfcmt -var "target:$(basename $(pwd))" plan -- terraform plan -var kubeconfig_path=${KUBECONFIG} -var context=kind-chart-testing'
         env:
           PR_NUMBER: ${{ github.event.number }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
