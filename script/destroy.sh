@@ -1,7 +1,8 @@
 #!/bin/sh
 
-ENV=$1
+LAYER=$1
+ENV=$2
 
-cd tffile/environment/$ENV
+cd tffile/environment/$LAYER/$ENV
 terraform init -input=false -no-color
 terraform destroy -input=false -no-color -auto-approve

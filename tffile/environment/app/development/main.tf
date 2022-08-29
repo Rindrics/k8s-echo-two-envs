@@ -12,7 +12,7 @@ provider "kustomization" {
 }
 
 module "development" {
-  source      = "../../module/app/"
+  source      = "../../../module/app/"
   context     = var.context
   environment = "development"
 }
