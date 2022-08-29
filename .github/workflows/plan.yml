@@ -1,0 +1,29 @@
+name: Check
+
+on:
+  push:
+
+env:
+  ARM_TENANT_ID: 59c61752-de1c-4d8b-b25e-a44928794411
+  ARM_SUBSCRIPTION_ID: e7032293-3adf-4613-9fc4-c50aeb7f4ee0
+  ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+
+jobs:
+  fmt:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v3
+        with:
+          path: ~/.local/share/aquaproj-aqua
+          key: aqua-cache-${{ hashFiles('aqua.yml') }}
+
+      - uses: aquaproj/aqua-installer@v1.0.0
+        with:
+          aqua_version: v1.1.0
+
+      - name: Format
+        run: terraform fmt -recursive -check
