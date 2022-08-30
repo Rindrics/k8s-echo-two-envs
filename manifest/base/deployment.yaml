@@ -11,6 +11,16 @@ spec:
     metadata:
       labels:
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                    - echo-env
+              topologyKey: "kubernetes.io/hostname"
       containers:
       - name: echo-env
         image: hashicorp/http-echo
