@@ -37,4 +37,4 @@ spec:
             path: /
             port: 5678
           timeoutSeconds: 3
-          initialDelaySeconds: 15
+          initialDelaySeconds: 30
