@@ -4,7 +4,7 @@ metadata:
   labels:
   name: echo-deployment
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
   template:
@@ -38,3 +38,8 @@ spec:
             port: 5678
           timeoutSeconds: 3
           initialDelaySeconds: 30
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 250m
